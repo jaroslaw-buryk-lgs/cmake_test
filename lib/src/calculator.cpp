@@ -32,8 +32,9 @@ double Calculator::cos(double x) {
 
 double Calculator::tan(double x) {
     // Check if cos(x) is close to zero, which would make tan undefined
+    // Using a reasonable tolerance for floating-point comparison
     double cosine = std::cos(x);
-    if (std::abs(cosine) < std::numeric_limits<double>::epsilon()) {
+    if (std::abs(cosine) < 1e-15) {
         throw std::invalid_argument("Tangent is undefined (approaching infinity)");
     }
     return std::tan(x);

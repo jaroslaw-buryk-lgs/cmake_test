@@ -7,6 +7,11 @@ public:
     double subtract(double a, double b);
     double multiply(double a, double b);
     double divide(double a, double b);
+    
+    // Trigonometric functions (input in radians)
+    double sin(double x);
+    double cos(double x);
+    double tan(double x);
 };
 
 #endif // CALCULATOR_H

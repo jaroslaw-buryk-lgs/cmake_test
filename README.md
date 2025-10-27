@@ -23,7 +23,7 @@ A simple calculator application built with C++ and CMake, demonstrating proper p
 
 ## Components
 
-1. **Business Logic Library** (`lib/`): Contains the core calculator functionality with basic arithmetic operations (add, subtract, multiply, divide).
+1. **Business Logic Library** (`lib/`): Contains the core calculator functionality with basic arithmetic operations (add, subtract, multiply, divide) and trigonometric functions (sin, cos, tan).
 
 2. **Command-line UI** (`app/`): An interactive command-line interface that allows users to perform calculator operations.
 
@@ -63,6 +63,8 @@ ctest
 ## Features
 
 - Addition, subtraction, multiplication, and division operations
+- Trigonometric functions: sin, cos, and tan (input in radians)
 - Error handling for division by zero
+- Error handling for undefined trigonometric values (e.g., tan(π/2))
 - Interactive command-line interface
 - Comprehensive unit tests for business logic

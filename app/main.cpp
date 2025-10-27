@@ -9,7 +9,10 @@ void printMenu() {
     std::cout << "2. Subtract" << std::endl;
     std::cout << "3. Multiply" << std::endl;
     std::cout << "4. Divide" << std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "5. Sin (radians)" << std::endl;
+    std::cout << "6. Cos (radians)" << std::endl;
+    std::cout << "7. Tan (radians)" << std::endl;
+    std::cout << "8. Exit" << std::endl;
     std::cout << "Choose an operation: ";
 }
 
@@ -33,6 +36,17 @@ bool getNumbers(double& a, double& b) {
     return true;
 }
 
+bool getSingleNumber(double& a) {
+    std::cout << "Enter value (in radians): ";
+    if (!(std::cin >> a)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input!" << std::endl;
+        return false;
+    }
+    return true;
+}
+
 int main() {
     Calculator calc;
     int choice;
@@ -50,16 +64,44 @@ int main() {
             continue;
         }
         
-        if (choice == 5) {
+        if (choice == 8) {
             std::cout << "Goodbye!" << std::endl;
             break;
         }
         
-        if (choice < 1 || choice > 4) {
-            std::cout << "Invalid choice! Please select 1-5." << std::endl;
+        if (choice < 1 || choice > 7) {
+            std::cout << "Invalid choice! Please select 1-8." << std::endl;
             continue;
         }
         
+        // Handle trigonometric functions (single parameter)
+        if (choice >= 5 && choice <= 7) {
+            if (!getSingleNumber(num1)) {
+                continue;
+            }
+            
+            try {
+                switch (choice) {
+                    case 5:
+                        result = calc.sin(num1);
+                        std::cout << "Result: sin(" << num1 << ") = " << result << std::endl;
+                        break;
+                    case 6:
+                        result = calc.cos(num1);
+                        std::cout << "Result: cos(" << num1 << ") = " << result << std::endl;
+                        break;
+                    case 7:
+                        result = calc.tan(num1);
+                        std::cout << "Result: tan(" << num1 << ") = " << result << std::endl;
+                        break;
+                }
+            } catch (const std::exception& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            continue;
+        }
+        
+        // Handle arithmetic operations (two parameters)
         if (!getNumbers(num1, num2)) {
             continue;
         }
